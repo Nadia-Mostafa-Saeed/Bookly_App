@@ -1,6 +1,7 @@
+import 'package:bookly_app/core/utils/constants.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_best_seller_list_view.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/featured_books_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -9,26 +10,41 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomAppBar(),
-          FeaturedBooksListView(),
-          SizedBox(
-            height: 50,
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: kPadding,
+                child: CustomAppBar(),
+              ),
+              FeaturedBooksListView(),
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: kPadding,
+                child: Text(
+                  'Best Seller',
+                  style: Styles.textStyle18,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              //FeaturedBestSellerListView(),
+            ],
           ),
-          Text(
-            'Best Seller',
-            style: Styles.textStyle18,
+        ),
+        SliverFillRemaining(
+          child: Padding(
+            padding: kPadding,
+            child: FeaturedBestSellerListView(),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          BestSellerListViewItem(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
