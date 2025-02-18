@@ -6,8 +6,8 @@ import 'package:bookly_app/features/home/presentation/views/widgets/book_rating.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,12 @@ class BestSellerListViewItem extends StatelessWidget {
                   SizedBox(
                     height: 3,
                   ),
-                  Text(
-                    'J.K Rowling',
-                    style: Styles.textStyle14,
+                  Opacity(
+                    opacity: .7,
+                    child: Text(
+                      'J.K Rowling',
+                      style: Styles.textStyle14,
+                    ),
                   ),
                   SizedBox(
                     height: 3,
