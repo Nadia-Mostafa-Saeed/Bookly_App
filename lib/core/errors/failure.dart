@@ -20,14 +20,25 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure('BadCertificate with ApiServer');
       case DioExceptionType.badResponse:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return ServerFailure.fromResponse(
+            e.response!.statusCode!, e.response!.data);
       case DioExceptionType.cancel:
         return ServerFailure('Request to ApiServer was cancelled');
       case DioExceptionType.connectionError:
         return ServerFailure('No Internet Connection');
       case DioExceptionType.unknown:
         return ServerFailure('Oops! There was an Error, please try again');
+    }
+  }
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (statusCode == 404) {
+      return ServerFailure('Your request was not fount, please try later.');
+    } else if (statusCode == 500) {
+      return ServerFailure('There is a problem with server. plese try later.');
+    } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerFailure(response['error']['message']);
+    } else {
+      return ServerFailure('There was an Error, please try again.');
     }
   }
 }
