@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app/core/errors/failure.dart';
 import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_featured_books_use_case.dart';
-import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
 part 'featured_books_state.dart';
