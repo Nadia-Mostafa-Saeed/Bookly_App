@@ -2,12 +2,19 @@ import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/constants.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_rating.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
+  const BookListViewItem({
+    super.key,
+    required this.book,
+  });
+
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +26,7 @@ class BookListViewItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 2.5 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  image: const DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(AssetsData.testImage),
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+              child: CachedNetworkImage(imageUrl: book.image ?? ''),
             ),
             SizedBox(
               width: 30,
@@ -40,7 +38,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * .5,
                     child: Text(
-                      'Harry Potter and the Goblet of Fire',
+                      book.title, //'Harry Potter and the Goblet of Fire',
                       style: Styles.textStyle20.copyWith(
                         fontFamily: kGtSectraFine,
                       ),
@@ -54,7 +52,7 @@ class BookListViewItem extends StatelessWidget {
                   Opacity(
                     opacity: .7,
                     child: Text(
-                      'J.K Rowling',
+                      book.authorName ?? '', //'J.K Rowling',
                       style: Styles.textStyle14,
                     ),
                   ),
@@ -64,7 +62,7 @@ class BookListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '19.99',
+                        '${book.price}', //'19.99',
                         style: Styles.textStyle20.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
