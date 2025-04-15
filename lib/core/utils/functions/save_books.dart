@@ -1,4 +1,4 @@
-import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
 
 void saveBooksData(List<BookEntity> books, String boxName) {

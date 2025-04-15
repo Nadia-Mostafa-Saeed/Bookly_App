@@ -1,8 +1,8 @@
 import 'package:bookly_app/core/utils/constants.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/featured_best_seller_list_view_bloc_builder.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/featured_books_list_view_bloc_builder.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_best_seller_list_view_bloc_consumer.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/featured_books_list_view_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
                 padding: kPadding,
                 child: CustomAppBar(),
               ),
-              FeaturedBooksListViewBlocBuilder(),
+              FeaturedBooksListViewBlocConsumer(),
               SizedBox(
                 height: 50,
               ),
@@ -41,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
         SliverFillRemaining(
           child: Padding(
             padding: kPadding,
-            child: FeaturedBestSellerListViewBlocBuilder(),
+            child: FeaturedBestSellerListViewBlocConsumer(),
           ),
         ),
       ],

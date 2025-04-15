@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_newest_books_use_case.dart';
 import 'package:meta/meta.dart';
 
@@ -20,7 +20,11 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
     var result = await fetchNewestBooksUseCase.call(param: pageNumber);
 
     result.fold((failure) {
-      emit(NewestBooksFailure(failure.message));
+      if (pageNumber == 0) {
+        emit(NewestBooksFailure(failure.message));
+      } else {
+        emit(NewestBooksPaginationFailure(failure.message));
+      }
     }, (books) {
       emit(NewestBooksSuccess(books));
     });

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:meta/meta.dart';
 
@@ -20,7 +20,11 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
     var result = await featuredBooksUseCase.call(param: pageNumber);
 
     result.fold((failure) {
-      emit(FeaturedBooksFailure(failure.message));
+      if (pageNumber == 0) {
+        emit(FeaturedBooksFailure(failure.message));
+      } else {
+        emit(FeaturedBooksPaginationFailure(failure.message));
+      }
     }, (books) {
       emit(FeaturedBooksSuccess(books));
     });

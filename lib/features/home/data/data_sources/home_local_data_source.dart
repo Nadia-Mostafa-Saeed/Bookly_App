@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/utils/constants.dart';
-import 'package:bookly_app/features/home/domain/entitites/book_entity.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {

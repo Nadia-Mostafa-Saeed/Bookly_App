@@ -9,6 +9,12 @@ final class NewestBooksLoading extends NewestBooksState {}
 
 final class NewestBooksPaginationLoading extends NewestBooksState {}
 
+final class NewestBooksPaginationFailure extends NewestBooksState {
+  final String errMessage;
+
+  NewestBooksPaginationFailure(this.errMessage);
+}
+
 final class NewestBooksFailure extends NewestBooksState {
   final String errorMessage;
 
