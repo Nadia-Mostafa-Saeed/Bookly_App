@@ -48,7 +48,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
       height: MediaQuery.sizeOf(context).height * .3,
       child: ListView.builder(
         controller: _scrollController,
-        itemCount: widget.books.length,
+        itemCount: widget.books.length + (isLoading ? 3 : 0),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
