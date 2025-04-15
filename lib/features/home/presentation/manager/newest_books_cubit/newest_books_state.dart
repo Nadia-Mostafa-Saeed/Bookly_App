@@ -7,6 +7,8 @@ final class NewestBooksInitial extends NewestBooksState {}
 
 final class NewestBooksLoading extends NewestBooksState {}
 
+final class NewestBooksPaginationLoading extends NewestBooksState {}
+
 final class NewestBooksFailure extends NewestBooksState {
   final String errorMessage;
 
