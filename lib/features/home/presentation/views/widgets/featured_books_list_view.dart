@@ -1,9 +1,10 @@
+import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/features/home/presentation/views/book_details_view.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
   const FeaturedBooksListView({super.key, required this.books});
@@ -54,11 +55,8 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return BookDetailsView(
-                  book: widget.books[index],
-                );
-              }));
+              GoRouter.of(context)
+                  .push(AppRouter.kBookDetailsView, extra: widget.books[index]);
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8),
