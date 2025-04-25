@@ -15,9 +15,6 @@ class BookDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        print('===========================================================m');
-        print('${book.category}');
-        print('===========================================================');
         return SimilarBooksCubit(
           getIt.get<SimilarBooksRepo>(),
         )..fetchSimilarBooks(category: book.category ?? 'Computer');

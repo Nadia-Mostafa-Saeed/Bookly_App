@@ -28,6 +28,7 @@ class BooksAction extends StatelessWidget {
             child: CustomButton(
               onPressed: () {
                 lunchCustomUrl(context, book.url);
+                print('=======================${book.url}');
               },
               text: getText(book),
               backgroundColor: Color(0xffEF8262),

@@ -4,6 +4,8 @@ import 'package:bookly_app/features/book%20details/domain/repos/similar_books_re
 import 'package:bookly_app/features/home/data/data_sources/home_local_data_source.dart';
 import 'package:bookly_app/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:bookly_app/features/search/data/repos/search_books_repo_impl.dart';
+import 'package:bookly_app/features/search/domain/repos/search_books_repo.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -17,5 +19,8 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<SimilarBooksRepo>(
     SimilarBooksRepoImpl(getIt<ApiService>()),
+  );
+  getIt.registerSingleton<SearchBooksRepo>(
+    SearchBooksRepoImpl(getIt<ApiService>()),
   );
 }
